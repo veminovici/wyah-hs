@@ -1,6 +1,14 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Parser where
+module Parser
+    (
+      Parser
+    , chainl1
+    , number
+    , parens
+    , reserved
+    , runParser
+    ) where
 
 import Data.Char
 import Control.Monad
@@ -73,6 +81,11 @@ instance Alternative Parser where
 instance MonadPlus Parser where
     mzero = failure
     mplus = combine
+
+
+-- (<|>) :: Parser a -> Parser a -> Parser a
+-- (<|>) = option
+
 
 -- | One or more. 
 -- The result is some_v, which is a v concat with many_v.
@@ -154,3 +167,4 @@ parens m = do
     n <- m
     reserved ")"
     return n
+
