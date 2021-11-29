@@ -25,6 +25,9 @@ dependencies:
 
 library:
   source-dirs: src
+  exposed-modules:
+    - Eval
+    - Parser
 
 executables:
   ch03-exe:
@@ -36,6 +39,10 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - ch03
+    - ghc
+    - haskeline
+    - mtl >= 2.2
+    - pretty >= 1.1
 
 tests:
   ch03-test:

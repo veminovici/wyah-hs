@@ -25,10 +25,10 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Eval
       Parser
-      Syntax
   other-modules:
+      Syntax
       Paths_ch03
   hs-source-dirs:
       src
@@ -47,7 +47,11 @@ executable ch03-exe
   build-depends:
       base >=4.7 && <5
     , ch03
+    , ghc
+    , haskeline
+    , mtl >=2.2
     , parsec >=3.1
+    , pretty >=1.1
   default-language: Haskell2010
 
 test-suite ch03-test
