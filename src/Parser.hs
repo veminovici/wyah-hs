@@ -96,6 +96,20 @@ satisfy p = item `bind` \c ->
     then unit c
     else failure
 
+-- | Parses one or more occurences of p, separated by op
+-- and returns a value obtained by a recursing until failure
+-- on the left hand side of the stream.
+chainl1 :: Parser a -> Parser (a -> a -> a) -> Parser a 
+p `chainl1` op = do { a <- p; rest a }
+    where rest a = (do f <- op; b <- p; rest (f a b))
+                    <|> return a
+
+-- | Parse zero or more occurences of p, separated by p
+-- and returns a value obtained by accumulating the values.
+-- If there are no occurences a default value is returned.
+chainl :: Parser a -> Parser (a -> a -> a) -> a -> Parser a
+chainl p op a = (p `chainl1` op) <|> return a
+
 --
 -- Higher level parsers
 --
