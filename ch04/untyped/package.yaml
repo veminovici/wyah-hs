@@ -1,6 +1,6 @@
-name:                ch03
+name:                untyped
 version:             0.1.0.0
-github:              "githubuser/ch03"
+github:              "githubuser/untyped"
 license:             BSD3
 author:              "Author name here"
 maintainer:          "example@example.com"
@@ -17,22 +17,27 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/ch03#readme>
+description:         Please see the README on GitHub at <https://github.com/githubuser/untyped#readme>
 
 dependencies:
 - base >= 4.7 && < 5
+- containers >= 0.5
 - parsec >= 3.1
 - pretty >= 1.1
+- mtl
+- transformers
 
 library:
   source-dirs: src
   exposed-modules:
     - Eval
+    - Lib
     - Parser
     - Pretty
+    - Syntax
 
 executables:
-  ch03-exe:
+  untyped-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -40,12 +45,11 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - ch03
+    - untyped
     - haskeline
-    - mtl >= 2.2
 
 tests:
-  ch03-test:
+  untyped-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -53,4 +57,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - ch03
+    - untyped
